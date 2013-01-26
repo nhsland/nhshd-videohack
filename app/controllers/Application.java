@@ -2,11 +2,14 @@ package controllers;
 
 import java.util.List;
 
+import org.w3c.dom.Document;
+
 import models.Appointment;
 import play.*;
 import play.libs.F.Function;
 import play.libs.F.Promise;
 import play.libs.WS;
+import play.libs.XPath;
 import play.mvc.*;
 
 import views.html.*;
@@ -122,13 +125,34 @@ public class Application extends Controller {
 		
 		//TODO setup the meeting in bbb
 		
-		String feedUrl = "http://www.w3schools.com/xml/note.xml";
+		//String feedUrl = "http://producthelp.sdl.com/SDL%20Trados%20Studio/client_en/sample.xml";
+		String feedUrl = "http://localhost:9000/assets/testResponse.xml";
 		
 	    return async(
-	    	      WS.url(feedUrl).get().map(
+	    	      WS.url(feedUrl).setHeader("Content-type", "text/xml; charset=utf-8").get().map(
 	    	        new Function<WS.Response, Result>() {
 	    	          public Result apply(WS.Response response) {
-	    	            return ok("Feed title:" + response.getBody()); //.asXml());
+
+
+	    	        	  // Works ... not overly helpful
+	    	        	  // return ok("Feed title:\n" + response.getBody());
+
+	    	        	  // Doesnt work .. although .getChildNodes.getSize() (or something) does return 1
+	    	        	  // return ok("Feed title:\n" + response.asXml());
+
+	    	        	  Document dom = response.asXml();
+	    	        	  if(dom == null) {
+	    	        	    return badRequest("Expecting Xml data");
+	    	        	  } else {
+	    	        	    String name = XPath.selectText("//meetingID", dom);
+	    	        	    if(name == null) {
+	    	        	      return badRequest("Missing parameter [name]");
+	    	        	    } else {
+	    	        	      return ok("Meeting created : " + name);
+	    	        	    }
+	    	        	  }
+    	        	  
+
 	    	          }
 	    	        }
 	    	      )
