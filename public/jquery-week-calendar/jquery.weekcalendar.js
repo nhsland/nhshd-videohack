@@ -1676,7 +1676,7 @@
 					calEvent.id *= -1
 					var http = new XMLHttpRequest ();
 					var url = "http://127.0.0.1:9000/test";
-					var params = "start=" + calEvent.start + "&end=" + calEvent.end + "&title=" + calEvent.title + "&body=" + calEvent.body;
+					var params = "start=" + calEvent.start + "&end=" + calEvent.end + "&title=" + calEvent.title + "&body=" + calEvent.body + "&username=" + username;
 					
 					http.open ( "GET", url + "?" + params, true );
 					
