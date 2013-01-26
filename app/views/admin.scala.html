@@ -1,14 +1,9 @@
 @(appointments: List[Appointment])
 
-@main("Welcome to Play 2.0") {
+@main("Administration Appointments") {
     
-	<html>
-	    <head>
-	        <title>@Messages("application.title")</title>
-		</head>
-		<body>
-    
-    
+Upcoming Appointments :
+
        @for(appointment <- appointments) {
                     <tr>
                         <td>@appointment.id</td>

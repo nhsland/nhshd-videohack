@@ -36,7 +36,8 @@ public class Application extends Controller {
   }
   
   public static Result clinician() {
-	  return ok(clinician.render(""));
+	  List<Appointment> appointments = Appointment.all();
+	  return ok(clinician.render(appointments));
   }
     
   public static Result patient() {

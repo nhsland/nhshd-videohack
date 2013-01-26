@@ -1,7 +1,18 @@
-@(message: String)
+@(appointments: List[Appointment])
 
-@main("Welcome to Play 2.0") {
+@main("Clinician Appointments") {
     
-   Admin @message
+Upcoming Appointments :
+
+       @for(appointment <- appointments) {
+                    <tr>
+                        <td>@appointment.id</td>
+                        <td>@appointment.patient</td>
+                        <td>@appointment.start</td>
+                        <td>@appointment.end</td>
+                        <td>@appointment.title</td>
+                        <td>@appointment.body</td>
+                    </tr>
+                }
     
 }		
