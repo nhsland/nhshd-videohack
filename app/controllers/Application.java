@@ -32,7 +32,5 @@ public class Application extends Controller {
 	  Logger.info ( "start: " + start + " end: " + end );
 	  return ok();
   
-  }
-  
-  
+  }  
 }
