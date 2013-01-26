@@ -29,7 +29,7 @@ public class Application extends Controller {
   
   public static Result test(String start, String end, String title, String body) {
   
-	  Logger.info ( "here is foo: " + start);
+	  Logger.info ( "start: " + start + " end: " + end );
 	  return ok();
   
   }
