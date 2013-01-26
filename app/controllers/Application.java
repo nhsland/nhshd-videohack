@@ -27,5 +27,10 @@ public class Application extends Controller {
 	  return ok(patient.render(""));
   }
   
+  public static Result test(String foo) {
+	  
+	  Logger.info("here is foo: " + foo);
+	  return ok();
+  }
   
 }
