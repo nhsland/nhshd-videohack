@@ -1,18 +1,38 @@
-@(appointments: List[Appointment])
+@(appointments: List[Appointment]) 
 
-@main("Administration Appointments") {
-    
-Upcoming Appointments :
+@main("Administration Appointments"){
 
-       @for(appointment <- appointments) {
-                    <tr>
-                        <td>@appointment.id</td>
-                        <td>@appointment.patient</td>
-                        <td>@appointment.start</td>
-                        <td>@appointment.end</td>
-                        <td>@appointment.title</td>
-                        <td>@appointment.body</td>
-                    </tr>
-                }
-    
-}		
+Upcoming Appointments : <br/><br/>
+
+<div class="clearfix"></div>
+
+<table class="appointments bordered-table zebra-striped condensed-table">
+
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Patient</th>
+			<th>Start</th>
+			<th>End</th>
+			<th>Title</th>
+			<th>Body</th>
+			<th>Actions</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+
+		@for(appointment <- appointments) {
+		<tr>
+			<td>@appointment.id</td>
+			<td>@appointment.patient</td>
+			<td>@appointment.start.substring(0,21)</td>
+			<td>@appointment.end.substring(0,21)</td>
+			<td>@appointment.title</td>
+			<td>@appointment.body</td>
+			<td><a href="#">Attend</a>
+		</tr>
+		}
+</table>
+
+}

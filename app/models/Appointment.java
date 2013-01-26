@@ -20,8 +20,12 @@ public class Appointment extends Model {
 	
 	public String title;
 	public String body;
-	//public String email;
+
 	
+	// USE THESE FOR LINKING
+	
+	public String email;
+	public String meetingID;
 	
 	
 	public static Finder<Long, Appointment> find = new Finder(Long.class, Appointment.class);
