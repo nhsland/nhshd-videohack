@@ -5,7 +5,41 @@
 	<html>
 	    <head>
 	        <title>@Messages("application.title")</title>
+			
+			<script type="text/javascript">
+				
+				$(document).ready(function(){
+				
+					var http = new XMLHttpRequest ();
+					var url = "http://127.0.0.1:9000/list";
+					
+					http.open ( "GET", url, true );
+			
+					http.onreadystatechange = function () { // Call a function when the state changes.
+  				  	
+						if ( http.readyState == 4 && http.status == 200 ) { // OK
+							
+							alert ( http.responseText );
+							
+						}
+					
+					}
+				  
+					http.send(null);
+					
+				});
+			</script>
+			
 		</head>
 		<body>
+			<table>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</body>
+	</hmtl>
     
 }		
