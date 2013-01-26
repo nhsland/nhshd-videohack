@@ -1,0 +1,12 @@
+<response> 
+        <returncode>SUCCESS</returncode> 
+    <meeting> 
+        <meetingID>Test</meetingID> 
+        <createTime>1308591802</createTime> 
+        <attendeePW>ap</attendeePW> 
+        <moderatorPW>mp</moderatorPW> 
+        <hasBeenForciblyEnded>false</hasBeenForciblyEnded> 
+        <messageKey>createSuccess</messageKey> 
+        <message>Meeting has been create</message> 
+    </meeting> 
+</response> 
