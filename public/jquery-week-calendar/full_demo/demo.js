@@ -61,8 +61,8 @@ $(document).ready(function() {
 
 				  //alert ( calEvent.id );
 
-                  $calendar.weekCalendar("removeUnsavedEvents");
                   $calendar.weekCalendar("updateEvent", calEvent);
+				  $calendar.weekCalendar("removeUnsavedEvents");
                   $dialogContent.dialog("close");
                },
                cancel : function() {

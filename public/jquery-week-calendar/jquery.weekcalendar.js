@@ -1670,7 +1670,8 @@
           if (calEvent.id) {
             self.element.find('.wc-cal-event').each(function() {
 				
-                if ( $(this).data('calEvent').id >= 10 || $(this).hasClass('wc-new-cal-event')) {
+                //if ( $(this).data('calEvent').id >= 10 || $(this).hasClass('wc-new-cal-event')) {
+				if ( $(this).hasClass('wc-new-cal-event') ) {
 					
 					// Send the new appointment to the URL for submission.
 					calEvent.id *= -1
