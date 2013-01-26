@@ -1,71 +1,57 @@
-@main("Login") {
+@main("Menu") {
 
-<head>
-<meta charset="utf-8">
-<title>Bootstrap, from Twitter</title>
-<meta name="description" content="">
-<meta name="author" content="">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/jumbotron.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/colours.css")">
 
-<!-- Le styles -->
-<link href="../bootstrap.css" rel="stylesheet">
-<style type="text/css">
-/* Override some defaults */
-html,body {
-	background-color: #eee;
-}
+  <!-- Masthead (blueprinty thing)
+    ================================================== -->
+    <header class="jumbotron masthead" id="overview">
+      <div class="inner">
+        <div class="container">
+          <h1>Welcome to @Messages("application.title")</h1>
+          <p class="lead">
+            <br />
+          </p>
+          <p>Here you can see the collated results from the mobile devices and view plots of the results.</p>
+        </div><!-- /container -->
+      </div>
+    </header>
 
-body {
-	padding-top: 40px;
-}
+				<div class="row" style="padding-top:20px">
+                    <a class="span-one-third bg-color-greenDark"  href="@routes.Application.patient()" style="text-decoration:none">
+                    	<p></p>
+                        <img src="/assets/images/picture.png" class="place-right" style="margin: 10px;float:right;padding:10px;">
+                        <h2 class="fg-color-white" style="padding-left:10px">&nbsp;Patients</h2>
+                        <p style="margin: 10px;padding-left:10px" class="fg-color-black">Create an appointment</p>
+                    	<br/>
+                    </a>
 
-.container {
-	width: 300px;
-}
+                    <a class="span-one-third bg-color-blue"  href="@routes.Application.admin()" style="text-decoration:none">
+                    	<p></p>
+                        <img src="/assets/images/pie.png" class="place-right" style="margin: 10px;float:right;padding:10px;">
+                        <h2 class="fg-color-white" style="padding-left:10px">&nbsp;Administrative</h2>
+                        <p style="margin: 10px;padding-left:10px" class="fg-color-black">Manage Appointments</p>
+                    	<br/>
+                    </a>
 
-/* The white background content wrapper */
-.container>.content {
-	background-color: #fff;
-	padding: 20px;
-	margin: 0 -20px;
-	-webkit-border-radius: 10px 10px 10px 10px;
-	-moz-border-radius: 10px 10px 10px 10px;
-	border-radius: 10px 10px 10px 10px;
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
-	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
-	box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
-}
+                    <a class="span-one-third bg-color-yellow"  href="@routes.Application.clinician()" style="text-decoration:none">
+                    	<p></p>
+                        <img src="/assets/images/box-remove.png" class="place-right" style="margin: 10px;float:right;padding:10px;">
+                        <h2 class="fg-color-white" style="padding-left:10px">&nbsp;Clinician</h2>
+                        <p style="margin: 10px;padding-left:10px" class="fg-color-black">Join Session</p>
+                    	<br/>
+                    </a>
+                </div>
 
-.login-form {
-	margin-left: 65px;
-}
-
-legend {
-	margin-right: -50px;
-	font-weight: bold;
-	color: #404040;
-}
-</style>
-
-</head>
-
-	<div class="row">
-		<div class="login-form">
-			<h2>Login</h2>
-			<form action="@routes.Application.dashboard()">
-				<fieldset>
-					<div class="clearfix">
-						<input type="text" name="username" placeholder="Username">
-					</div>
-					<div class="clearfix">
-						<input type="password" placeholder="Password">
-					</div>
-					<button class="btn primary" type="submit">Sign in</button>
-				</fieldset>
-			</form>
+<div class="row" style="padding-top:20px">
+	<div class="span8 offset4">
+		<div class="alert-message block-message info">
+    	    <p style="text-align:center"><strong>Tip!</strong> To begin - please select an action from the panels above.</p>
 		</div>
 	</div>
-
+</div>
 
 
 
 }
+

@@ -1,0 +1,58 @@
+.hidden { 
+    display: none;	
+}
+
+/* Axes */
+.axis path,
+.axis line {
+	fill: none;
+	stroke: black;
+	shape-rendering: crispEdges;
+}
+.axis text {
+	font-family: sans-serif;
+	font-size: 11px;
+}
+
+/* Tooltips */
+div.tooltip {
+  position: absolute;
+  width: 140px;
+  height: 60px;
+  padding: 8px;
+  background: white;
+  -moz-box-shadow: 4px 4px 12px rgba(0,0,0,.5);
+  -webkit-box-shadow: 4px 4px 12px rgba(0,0,0,.5);
+  box-shadow: 4px 4px 12px rgba(0,0,0,.5);
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  pointer-events: none;
+}
+#legend img { 
+	margin-right: 5px;
+}
+#graph-container { 
+    min-width: 300px;
+    font-weight: bold;
+position:relative;
+ overflow: visible;
+top: -30px;
+}
+#graph { 
+    overflow: visible;	
+    position: relative;
+}
+#y-axis-label { 
+  font-size: 0.75em; 
+  position: absolute; 
+  left: 0px;
+  top: 10px;
+}
+#x-axis-label { 
+  font-size: 0.75em; 
+  position: absolute; 
+}
+#legend { 
+  font-size: 1.2em; 
+  font-family: Baskerville, "Times New Roman", serif;
+}

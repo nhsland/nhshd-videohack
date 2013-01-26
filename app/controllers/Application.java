@@ -14,7 +14,11 @@ import play.data.DynamicForm;
 public class Application extends Controller {
   
   public static Result index() {
-    return ok(index.render());
+	  return ok(index.render());
+  }
+	
+  public static Result login() {
+    return ok(login.render());
   }
   
   public static Result dashboard() {
