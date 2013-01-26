@@ -38,11 +38,20 @@
         <div class="container">
           <p class="brand">Start</p>
           <ul class="nav">
-            <li class="active!"><a href="@(routes.Application.dashboard())">Dashboard</a></li>            
+            <li class="active!"><a href="@(routes.Application.index())">Index</a></li>            
+            
+            @if(session.get("connected")==null) {
             <li><a href="@(routes.Application.login())">Login</a></li>
+            } else {
             <li><a href="@(routes.Application.logout())">Logout</a></li>
+            }
+            
           </ul>
-          <p class="pull-right">Logged in as <a href="#">@session.get("connected")</a></p>
+            @if(session.get("connected")==null) {
+            <p class="pull-right">Not Logged in</p>
+            } else {
+            <p class="pull-right">Logged in as <a href="#">@session.get("connected")</a></p>
+            }
         </div>
       </div>
     </div>
