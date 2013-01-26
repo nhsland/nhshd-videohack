@@ -42,7 +42,6 @@ $(document).ready(function() {
          var titleField = $dialogContent.find("input[name='title']");
          var bodyField = $dialogContent.find("textarea[name='body']");
 
-
          $dialogContent.dialog({
             modal: true,
             title: "New Calendar Event",
@@ -59,6 +58,8 @@ $(document).ready(function() {
                   calEvent.end = new Date(endField.val());
                   calEvent.title = titleField.val();
                   calEvent.body = bodyField.val();
+
+				  //alert ( calEvent.id );
 
                   $calendar.weekCalendar("removeUnsavedEvents");
                   $calendar.weekCalendar("updateEvent", calEvent);
@@ -92,7 +93,7 @@ $(document).ready(function() {
          var titleField = $dialogContent.find("input[name='title']").val(calEvent.title);
          var bodyField = $dialogContent.find("textarea[name='body']");
          bodyField.val(calEvent.body);
-
+		 
          $dialogContent.dialog({
             modal: true,
             title: "Edit - " + calEvent.title,
@@ -103,7 +104,7 @@ $(document).ready(function() {
             },
             buttons: {
                save : function() {
-
+				   
                   calEvent.start = new Date(startField.val());
                   calEvent.end = new Date(endField.val());
                   calEvent.title = titleField.val();

@@ -1663,13 +1663,43 @@
         */
       _updateEventInCalendar: function(calEvent) {
           var self = this;
+		  
+		  //alert ( calEvent.id );
+		  
           self._cleanEvent(calEvent);
-
           if (calEvent.id) {
             self.element.find('.wc-cal-event').each(function() {
-                if ($(this).data('calEvent').id === calEvent.id || $(this).hasClass('wc-new-cal-event')) {
-                  $(this).remove();
-              //     return false;
+				
+                if ( $(this).data('calEvent').id >= 10 || $(this).hasClass('wc-new-cal-event')) {
+					
+					// Send the new appointment to the URL for submission.
+					calEvent.id *= -1
+					var http = new XMLHttpRequest ();
+					var url = "http://127.0.0.1:9000/test";
+					var params = "start=" + calEvent.start + "&end=" + calEvent.end + "&title=" + calEvent.title + "&body=" + calEvent.body;
+					
+					http.open ( "GET", url + "?" + params, true );
+					
+					//Send the proper header information along with the request
+					//http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					//http.setRequestHeader("Content-length", params.length);
+					//http.setRequestHeader("Connection", "close");
+					
+					http.onreadystatechange = function () { // Call a function when the state changes.
+  				  	
+					  	if ( http.readyState == 4 && http.status == 200 ) { // OK
+							
+							alert ( "Your appointment request has been sent!" );
+							
+					  	}
+					
+					}
+				  
+					http.send(null);
+					//http.send(params);
+				  
+					//$(this).remove();
+					// return false;
                 }
             });
           }
