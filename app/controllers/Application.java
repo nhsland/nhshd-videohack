@@ -157,14 +157,6 @@ public class Application extends Controller {
 	    	        }
 	    	      )
 	    	     );
-		
-		//Promise<WS.Response> homePage = WS.url("http://www.w3schools.com/xml/note.xml").get();
-
-			
-		// Logger.info("Triggered meeting - ");
-		
-		//return ok();
-		
 	}
 	
 	
