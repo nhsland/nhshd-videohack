@@ -4,6 +4,9 @@ import java.util.List;
 
 import models.Appointment;
 import play.*;
+import play.libs.F.Function;
+import play.libs.F.Promise;
+import play.libs.WS;
 import play.mvc.*;
 
 import views.html.*;
@@ -114,6 +117,32 @@ public class Application extends Controller {
 
 	}
 
+	
+	public static Result setupMeeting(Long id) {
+		
+		//TODO setup the meeting in bbb
+		
+		String feedUrl = "http://www.w3schools.com/xml/note.xml";
+		
+	    return async(
+	    	      WS.url(feedUrl).get().map(
+	    	        new Function<WS.Response, Result>() {
+	    	          public Result apply(WS.Response response) {
+	    	            return ok("Feed title:" + response.getBody()); //.asXml());
+	    	          }
+	    	        }
+	    	      )
+	    	     );
+		
+		//Promise<WS.Response> homePage = WS.url("http://www.w3schools.com/xml/note.xml").get();
+
+			
+		// Logger.info("Triggered meeting - ");
+		
+		//return ok();
+		
+	}
+	
 	
 	public static Result approve(Long id) {
 

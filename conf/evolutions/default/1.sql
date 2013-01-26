@@ -16,7 +16,15 @@ create table appointment (
   constraint pk_appointment primary key (id))
 ;
 
+create table user (
+  id                        bigint not null,
+  email                     varchar(255),
+  constraint pk_user primary key (id))
+;
+
 create sequence appointment_seq;
+
+create sequence user_seq;
 
 
 
@@ -27,7 +35,11 @@ SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists appointment;
 
+drop table if exists user;
+
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists appointment_seq;
+
+drop sequence if exists user_seq;
 
