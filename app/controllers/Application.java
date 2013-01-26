@@ -10,6 +10,9 @@ import views.html.*;
 
 import play.data.DynamicForm;
 
+import com.typesafe.plugin.*;
+
+
 public class Application extends Controller {
 
 	public static Result index() {
@@ -111,4 +114,37 @@ public class Application extends Controller {
 
 	}
 
+	
+	public static Result approve(Long id) {
+
+		MailerAPI mail = play.Play.application().plugin(MailerPlugin.class).email();
+		mail.setSubject("mailer");
+		mail.addRecipient("Peter Hausel Junior <noreply@email.com>","example@foo.com");
+		mail.addFrom("Peter Hausel <noreply@email.com>");
+		//sends html
+		mail.sendHtml("<html>html</html>" );
+		//sends text/text
+		mail.send( "text" );
+		//sends both text and html
+		mail.send( "text", "<html>html</html>");
+		
+		return ok("mail sent");
+	}
+	
+	public static Result decline(Long id) {
+
+		MailerAPI mail = play.Play.application().plugin(MailerPlugin.class).email();
+		mail.setSubject("mailer");
+		mail.addRecipient("Peter Hausel Junior <noreply@email.com>","example@foo.com");
+		mail.addFrom("Peter Hausel <noreply@email.com>");
+		//sends html
+		mail.sendHtml("<html>html</html>" );
+		//sends text/text
+		mail.send( "text" );
+		//sends both text and html
+		mail.send( "text", "<html>html</html>");
+		
+		return ok("mail sent");
+	}
+	
 }

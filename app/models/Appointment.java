@@ -24,6 +24,7 @@ public class Appointment extends Model {
 	
 	// USE THESE FOR LINKING
 	
+	public String status;
 	public String email;
 	public String meetingID;
 	

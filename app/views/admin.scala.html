@@ -30,7 +30,7 @@ Upcoming Appointments : <br/><br/>
 			<td>@appointment.end.substring(0,21)</td>
 			<td>@appointment.title</td>
 			<td>@appointment.body</td>
-			<td><a href="#">Attend</a>
+			<td><a href="@(routes.Application.approve(appointment.id))">Approve</a> | <a href="@(routes.Application.decline(appointment.id))">Decline</a>
 		</tr>
 		}
 </table>

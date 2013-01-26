@@ -10,6 +10,7 @@ create table appointment (
   end                       varchar(255),
   title                     varchar(255),
   body                      varchar(255),
+  status                    varchar(255),
   email                     varchar(255),
   meeting_id                varchar(255),
   constraint pk_appointment primary key (id))
