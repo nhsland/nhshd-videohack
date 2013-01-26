@@ -5,6 +5,8 @@
 # Home page
 GET     /                           controllers.Application.index()
 
+GET		/dashboard					controllers.Application.dashboard()
+
 GET		/admin						controllers.Application.admin()
 GET		/clinician					controllers.Application.clinician()
 GET		/patient					controllers.Application.patient()
