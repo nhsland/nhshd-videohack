@@ -125,6 +125,10 @@ public class Application extends Controller {
 		
 		//TODO setup the meeting in bbb
 		
+		Appointment appointment = Appointment.find.byId(id);
+	//	appointment.meetingID = "meetingID";
+		appointment.save();
+		
 		//String feedUrl = "http://producthelp.sdl.com/SDL%20Trados%20Studio/client_en/sample.xml";
 		String feedUrl = "http://localhost:9000/assets/testResponse.xml";
 		
@@ -144,11 +148,11 @@ public class Application extends Controller {
 	    	        	  if(dom == null) {
 	    	        	    return badRequest("Expecting Xml data");
 	    	        	  } else {
-	    	        	    String name = XPath.selectText("//meetingID", dom);
-	    	        	    if(name == null) {
-	    	        	      return badRequest("Missing parameter [name]");
+	    	        	    String meetingID = XPath.selectText("//meetingID", dom);
+	    	        	    if(meetingID == null) {
+	    	        	      return badRequest("Missing parameter [meetingID]");
 	    	        	    } else {
-	    	        	      return ok("Meeting created : " + name);
+	    	        	      return ok("Meeting created : " + meetingID);
 	    	        	    }
 	    	        	  }
     	        	  
