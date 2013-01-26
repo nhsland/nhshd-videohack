@@ -11,6 +11,7 @@ GET		/admin						controllers.Application.admin()
 GET		/clinician					controllers.Application.clinician()
 GET		/patient					controllers.Application.patient()
 
+GET		/test						controllers.Application.test(start:String,end:String,title:String,body:String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
