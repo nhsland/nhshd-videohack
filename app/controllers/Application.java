@@ -22,17 +22,26 @@ public class Application extends Controller {
   }
   
   public static Result dashboard() {
-	  
+
 	  final DynamicForm form = form().bindFromRequest();
-	      final String name = form.get("username");
-	 //     return ok(index.render(String.format("You are %s, %s",surname, name)));
-	  
-	  	session("connected", name);
-	  
-	  	Logger.info(name);
-	  	
-	    return ok(dashboard.render());
+      final String name = form.get("username");
+
+      //     return ok(index.render(String.format("You are %s, %s",surname, name)));
+  
+  	session("connected", name);
+  
+  	Logger.info(name);
+  	
+  	if (name.toLowerCase().equals("admin")) {
+  		return redirect(controllers.routes.Application.admin());
+  	}
+  	if (name.toLowerCase().equals("clinician")) {
+  		return redirect(controllers.routes.Application.clinician());
+  	}
+  	
+  		return redirect(controllers.routes.Application.patient());
   }
+  
   
   public static Result admin() {
 	  List<Appointment> appointments = Appointment.all();
