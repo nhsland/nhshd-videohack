@@ -117,21 +117,13 @@ public class Application extends Controller {
 	
 	public static Result approve(Long id) {
 
-		MailerAPI mail = play.Play.application().plugin(MailerPlugin.class).email();
-		mail.setSubject("mailer");
-		mail.addRecipient("Peter Hausel Junior <noreply@email.com>","example@foo.com");
-		mail.addFrom("Peter Hausel <noreply@email.com>");
-		//sends html
-		mail.sendHtml("<html>html</html>" );
-		//sends text/text
-		mail.send( "text" );
-		//sends both text and html
-		mail.send( "text", "<html>html</html>");
+		//TODO flesh out appointment approval text
+
+		// Blah .. your email has been appointment.status ... blahh
 		
-		return ok("mail sent");
-	}
-	
-	public static Result decline(Long id) {
+		Appointment appointment = Appointment.find.byId(id);
+		appointment.status = "Accepted";
+		appointment.save();
 
 		MailerAPI mail = play.Play.application().plugin(MailerPlugin.class).email();
 		mail.setSubject("mailer");
@@ -140,7 +132,31 @@ public class Application extends Controller {
 		//sends html
 		mail.sendHtml("<html>html</html>" );
 		//sends text/text
-		mail.send( "text" );
+		mail.send( "Date: " + appointment.start );
+		//sends both text and html
+		mail.send( "text", "<html>html</html>");
+		
+		return ok("mail sent");
+	}
+	
+	public static Result decline(Long id) {
+
+		//TODO flesh out appointment decline text
+
+		// Blah .. your email has been appointment.status ... blahh
+		
+		Appointment appointment = Appointment.find.byId(id);
+		appointment.status = "Declined";
+		appointment.save();
+		
+		MailerAPI mail = play.Play.application().plugin(MailerPlugin.class).email();
+		mail.setSubject("mailer");
+		mail.addRecipient("Peter Hausel Junior <noreply@email.com>","example@foo.com");
+		mail.addFrom("Peter Hausel <noreply@email.com>");
+		//sends html
+		mail.sendHtml("<html>html</html>" );
+		//sends text/text
+		mail.send( "Date: " + appointment.start );
 		//sends both text and html
 		mail.send( "text", "<html>html</html>");
 		
