@@ -16,13 +16,12 @@ public class Application extends Controller {
 	  return ok(admin.render(""));
   }
   
-  
-  public static Result patient() {
+  public static Result clinician() {
 	  return ok(patient.render(""));
   }
-  
-  public static Result clinician() {
-	  return ok(clinician.render(""));
+    
+  public static Result patient() {
+	  return ok(patient.render(""));
   }
   
   
