@@ -4,8 +4,9 @@ $(document).ready(function() {
    var $calendar = $('#calendar');
    var id = 10;
 
-   $('#calendar').weekCalendar({
-      displayOddEven:true,
+   $calendar.weekCalendar({
+	   data: 'http://localhost:9000/listAppointmentsAsJson',
+	   displayOddEven:true,
       timeslotsPerHour : 4,
       allowCalEventOverlap : true,
       overlapEventsSeparate: true,
@@ -13,7 +14,6 @@ $(document).ready(function() {
       businessHours :{start: 8, end: 18, limitDisplay: true },
       daysToShow : 7,
       switchDisplay: {'1 day': 1, '3 next days': 3, 'work week': 5, 'full week': 7},
-	  data:'http://127.0.0.1:9000/listAppointmentsAsJson',
       title: function(daysToShow) {
 			return daysToShow == 1 ? '%date%' : '%start% - %end%';
       },
@@ -138,6 +138,10 @@ $(document).ready(function() {
       noEvents : function() {
 
       }
+      //,
+      //data : function(start, end, callback) {
+      //   callback(getEventData());
+      //}
    });
 
    function resetForm($dialogContent) {
