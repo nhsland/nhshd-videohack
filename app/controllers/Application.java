@@ -8,6 +8,7 @@ import models.Appointment;
 import play.*;
 import play.libs.F.Function;
 import play.libs.F.Promise;
+import play.libs.Json;
 import play.libs.WS;
 import play.libs.XPath;
 import play.mvc.*;
@@ -87,8 +88,7 @@ public class Application extends Controller {
 		return ok(patient.render(username));
 	}
 
-	public static Result test(String start, String end, String title,
-			String body, String username) {
+	public static Result createAppointment(String start, String end, String title, String body, String username) {
 
 		Logger.info("start: " + start + " end: " + end);
 
@@ -110,14 +110,9 @@ public class Application extends Controller {
 
 	}
 
-	public static Result list() {
+	public static Result listAppointmentsAsJson() {
 		List<Appointment> appointments = Appointment.all();
-		// Appointment appointment = new Appointment();
-
-		Logger.info("lenth " + appointments.size());
-
-		return ok();
-
+		return ok(Json.toJson(appointments));
 	}
 
 	

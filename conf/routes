@@ -14,14 +14,13 @@ GET		/admin						controllers.Application.admin()
 GET		/clinician					controllers.Application.clinician()
 GET		/patient					controllers.Application.patient()
 
+GET		/test						controllers.Application.createAppointment(start:String,end:String,title:String,body:String,username:String)
+GET		/listAppointmentsAsJson		controllers.Application.listAppointmentsAsJson()
 
 GET		/approve						controllers.Application.approve(id:Long)
 GET		/decline						controllers.Application.decline(id:Long)
 
 GET		/setupMeeting					controllers.Application.setupMeeting(id:Long)
-
-GET		/test						controllers.Application.test(start:String,end:String,title:String,body:String,username:String)
-GET		/list						controllers.Application.list()
 
 
 # Map static resources from the /public folder to the /assets URL path
