@@ -1,5 +1,8 @@
 package util;
 
+import java.io.IOException;
+
 public interface BigBlueButtonApi {
-	void create(String params);
+	String create(String meetingID) throws IOException;
+	String join(String meetingID, String fullName, String password) throws IOException;
 }
