@@ -27,11 +27,6 @@ public class Application extends Controller {
 	private static final String BBB_SERVER = "192.168.190.194";
 	private static final String BBB_SERVER_SALT = "cb357f07e25eaaa116dde56fd9411a6c";
 	
-	public static Result foo(){
-		
-		BigBlueButton BBB = new BigBlueButton(BBB_SERVER, BBB_SERVER_SALT);
-	}
-	
 	public static Result index() {
 		return ok(index.render());
 	}
@@ -136,12 +131,18 @@ public class Application extends Controller {
 		
 		BigBlueButton bbb = new BigBlueButton(BBB_SERVER, BBB_SERVER_SALT);
 
-		String feedURL = bbb.create(appointment.meetingID);
+//		String feedUrl = bbb.create(meetID);
 		
 		
 		//String feedUrl = "http://producthelp.sdl.com/SDL%20Trados%20Studio/client_en/sample.xml";
-		//String feedUrl = "http://localhost:9000/assets/testResponse.xml";
+		String feedUrl = "http://localhost:9000/assets/testResponse.xml";
 		
+
+  		Appointment appointment = Appointment.find.byId(id);
+//	      appointment.meetingID = meetingID;
+//	      appointment.atendeePW = attendeePW;
+	      
+		appointment.save();
 
 		
 		return async(
@@ -155,8 +156,6 @@ public class Application extends Controller {
 
 	    	        	  // Doesnt work .. although .getChildNodes.getSize() (or something) does return 1
 	    	        	  // return ok("Feed title:\n" + response.asXml());
-
-	    	      		Appointment appointment = Appointment.find.byId(id);
 
 	    	        	  Document dom = response.asXml();
 	    	        	  if(dom == null) {
@@ -179,10 +178,6 @@ public class Application extends Controller {
 
 	    	        	      return ok("Meeting created : " + meetingID + attendeePW);
 	    	        	      
-	    	        	      appointment.meetingID = meetingID;
-	    	        	      appointment.atendeePW = attendeePW;
-	    	        	      
-	  	    	    		appointment.save();
 	    	        	      
 	    	        	  }
     	        	  
@@ -191,7 +186,9 @@ public class Application extends Controller {
 	    	        }
 	    	      )
 	    	     );
+
 	}
+	
 	
 	
 	public static Result approve(Long id) {
