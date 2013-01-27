@@ -27,7 +27,7 @@ public class Appointment extends Model {
 	public String status;
 	public String email;
 	public String meetingID;
-	
+	public String atendeePW;
 	
 	public static Finder<Long, Appointment> find = new Finder(Long.class, Appointment.class);
 

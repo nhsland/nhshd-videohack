@@ -13,15 +13,25 @@ import play.libs.WS;
 import play.libs.XPath;
 import play.mvc.*;
 
+import util.BigBlueButton;
 import views.html.*;
 
 import play.data.DynamicForm;
 
+import com.eaio.uuid.UUID;
 import com.typesafe.plugin.*;
 
 
 public class Application extends Controller {
 
+	private static final String BBB_SERVER = "192.168.190.194";
+	private static final String BBB_SERVER_SALT = "cb357f07e25eaaa116dde56fd9411a6c";
+	
+	public static Result foo(){
+		
+		BigBlueButton BBB = new BigBlueButton(BBB_SERVER, BBB_SERVER_SALT);
+	}
+	
 	public static Result index() {
 		return ok(index.render());
 	}
@@ -120,14 +130,21 @@ public class Application extends Controller {
 		
 		//TODO setup the meeting in bbb
 		
-		Appointment appointment = Appointment.find.byId(id);
-	//	appointment.meetingID = "meetingID";
-		appointment.save();
+		String meetID = new UUID().toString();
+
+		
+		
+		BigBlueButton bbb = new BigBlueButton(BBB_SERVER, BBB_SERVER_SALT);
+
+		String feedURL = bbb.create(appointment.meetingID);
+		
 		
 		//String feedUrl = "http://producthelp.sdl.com/SDL%20Trados%20Studio/client_en/sample.xml";
-		String feedUrl = "http://localhost:9000/assets/testResponse.xml";
+		//String feedUrl = "http://localhost:9000/assets/testResponse.xml";
 		
-	    return async(
+
+		
+		return async(
 	    	      WS.url(feedUrl).setHeader("Content-type", "text/xml; charset=utf-8").get().map(
 	    	        new Function<WS.Response, Result>() {
 	    	          public Result apply(WS.Response response) {
@@ -139,16 +156,34 @@ public class Application extends Controller {
 	    	        	  // Doesnt work .. although .getChildNodes.getSize() (or something) does return 1
 	    	        	  // return ok("Feed title:\n" + response.asXml());
 
+	    	      		Appointment appointment = Appointment.find.byId(id);
+
 	    	        	  Document dom = response.asXml();
 	    	        	  if(dom == null) {
 	    	        	    return badRequest("Expecting Xml data");
 	    	        	  } else {
 	    	        	    String meetingID = XPath.selectText("//meetingID", dom);
+
 	    	        	    if(meetingID == null) {
 	    	        	      return badRequest("Missing parameter [meetingID]");
 	    	        	    } else {
-	    	        	      return ok("Meeting created : " + meetingID);
+//	    	        	      return ok("Meeting created : " + meetingID);
 	    	        	    }
+
+	    	        	    String attendeePW = XPath.selectText("//attendeePW", dom);
+	    	        	    if(attendeePW == null) {
+	    	        	      return badRequest("Missing parameter [attendeePW]");
+	    	        	    } else {
+//	    	        	      return ok("Meeting created : " + meetingID);
+	    	        	    }
+
+	    	        	      return ok("Meeting created : " + meetingID + attendeePW);
+	    	        	      
+	    	        	      appointment.meetingID = meetingID;
+	    	        	      appointment.atendeePW = attendeePW;
+	    	        	      
+	  	    	    		appointment.save();
+	    	        	      
 	    	        	  }
     	        	  
 
