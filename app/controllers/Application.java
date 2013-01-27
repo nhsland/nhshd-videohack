@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.w3c.dom.Document;
@@ -131,11 +132,14 @@ public class Application extends Controller {
 		
 		BigBlueButton bbb = new BigBlueButton(BBB_SERVER, BBB_SERVER_SALT);
 
-//		String feedUrl = bbb.create(meetID);
+		String feedUrl = null;
 		
+		try {
+		feedUrl = bbb.create(meetID);
+		} catch (IOException e) {}
 		
 		//String feedUrl = "http://producthelp.sdl.com/SDL%20Trados%20Studio/client_en/sample.xml";
-		String feedUrl = "http://localhost:9000/assets/testResponse.xml";
+		// String feedUrl = "http://localhost:9000/assets/testResponse.xml";
 		
 
   		Appointment appointment = Appointment.find.byId(id);
