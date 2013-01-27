@@ -13,6 +13,7 @@ create table appointment (
   status                    varchar(255),
   email                     varchar(255),
   meeting_id                varchar(255),
+  atendee_pw                varchar(255),
   constraint pk_appointment primary key (id))
 ;
 

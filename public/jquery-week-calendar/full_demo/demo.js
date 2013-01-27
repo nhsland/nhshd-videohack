@@ -4,7 +4,7 @@ $(document).ready(function() {
    var id = 10;
 
    $calendar.weekCalendar({
-	   data: 'http://localhost:9000/listAppointmentsAsJson',
+	   data: "http://localhost:9000/listAppointmentsAsJson",
 	   displayOddEven:true,
 	   timeslotsPerHour : 4,
 	   allowCalEventOverlap : true,
@@ -153,7 +153,7 @@ $(document).ready(function() {
       var month = new Date().getMonth();
       var day = new Date().getDate();	  
 	  
-	  {
+	  return {
 	  	           events : [
 	  	              {
 	  	                 "id":1,
