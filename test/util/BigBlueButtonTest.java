@@ -41,4 +41,13 @@ public class BigBlueButtonTest {
 				ret.subSequence(0, ret.length()-11));
 	}
 
+	@Test
+	public void BbbJoinUrlTest() throws IOException {
+		String ret = bbb_api.join("helloworld2","MrJohnSmith","CKJodkdV");
+		System.out.println(ret);
+		assertEquals("URL does not return correctly",
+				String.format("http://%s/bigbluebutton/api/create?&meeting=helloworld2%s&checksum=",BBB_SERVER,BBB_SERVER_SALT),
+				ret.subSequence(0, ret.length()-11));
+	}
+
 }

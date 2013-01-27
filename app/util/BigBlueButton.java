@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-public class BigBlueButton {
+public class BigBlueButton implements BigBlueButtonApi {
 	
 	private static final String BBB_SERVER_FORMAT = "http://%s/bigbluebutton/api/";
 	
@@ -20,8 +20,12 @@ public class BigBlueButton {
 		this.bbb_server_salt = salt;
 	}
 
-	public String create(String meeting) throws IOException {
-		return this.callBbbApi("create", String.format("meetingID=%s&record=true&welcome=blargle", meeting));
+	public String create(String meetingID) throws IOException {
+		return this.callBbbApi("create", String.format("meetingID=%s&record=true&welcome=blargle", meetingID));
+	}
+
+	public String join(String meetingID, String fullName, String password) throws IOException {
+		return this.callBbbApi("join", String.format("meetingID=%s&fullName=%s&password=%s", meetingID, fullName, password));
 	}
 
 	private String callBbbApi(String method, String params) throws IOException {
