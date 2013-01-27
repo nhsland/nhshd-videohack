@@ -5,7 +5,8 @@ $(document).ready(function() {
    var id = 10;
 
    $calendar.weekCalendar({
-      displayOddEven:true,
+	   data: 'http://localhost:9000/listAppointmentsAsJson',
+	   displayOddEven:true,
       timeslotsPerHour : 4,
       allowCalEventOverlap : true,
       overlapEventsSeparate: true,
@@ -136,10 +137,11 @@ $(document).ready(function() {
       },
       noEvents : function() {
 
-      },
-      data : function(start, end, callback) {
-         callback(getEventData());
       }
+      //,
+      //data : function(start, end, callback) {
+      //   callback(getEventData());
+      //}
    });
 
    function resetForm($dialogContent) {
