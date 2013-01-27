@@ -20,7 +20,7 @@ public class BigBlueButtonCamelTest extends CamelTestSupport{
     @Test
     public void testCallRESTApi() throws Exception {
         // create a new file in the inbox folder with the name hello.txt and containing Hello World as body
-        template.sendBody("direct:apiinput","create");
+        template.sendBody("direct:apiinput","meeting121");
         // wait a while to let the file be moved
         Thread.sleep(2000);
 

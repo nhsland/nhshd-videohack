@@ -16,7 +16,6 @@ object ApplicationBuild extends Build {
       "org.apache.camel" % "camel-mail" % "2.10.3",
       "commons-codec" % "commons-codec" % "1.7"
       
-      
     )
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = JAVA).settings(

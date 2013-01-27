@@ -3,6 +3,8 @@ package controllers;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.camel.CamelContext;
+import org.apache.camel.ProducerTemplate;
 import org.w3c.dom.Document;
 
 import models.Appointment;
@@ -14,12 +16,15 @@ import play.libs.WS;
 import play.libs.XPath;
 import play.mvc.*;
 
+//import util.BbbCamelConfig;
 import util.BigBlueButton;
+import util.CamelContainer;
 import views.html.*;
 
 import play.data.DynamicForm;
 
 import com.eaio.uuid.UUID;
+import com.google.inject.Inject;
 import com.typesafe.plugin.*;
 
 
@@ -27,6 +32,7 @@ public class Application extends Controller {
 
 	private static final String BBB_SERVER = "192.168.190.194";
 	private static final String BBB_SERVER_SALT = "cb357f07e25eaaa116dde56fd9411a6c";
+
 	
 	public static Result index() {
 		return ok(index.render());
@@ -125,79 +131,66 @@ public class Application extends Controller {
 	public static Result setupMeeting(Long id) {
 		
 		//TODO setup the meeting in bbb
-		
 		String meetID = new UUID().toString();
-
 		
-		
-		BigBlueButton bbb = new BigBlueButton(BBB_SERVER, BBB_SERVER_SALT);
-		
-		
-
-		String feedUrl = null;
-		try {
-			Logger.info(bbb.create(meetID));
-			Logger.info(bbb.join("bfb8f620-6892-11e2-8aec-000c297e72b0", "person","eXUvjA18"));
-		} catch (Exception e){
-			
-		}
-		
-		try {
-		feedUrl = bbb.create(meetID);
-		} catch (IOException e) {}
-		
-		//String feedUrl = "http://producthelp.sdl.com/SDL%20Trados%20Studio/client_en/sample.xml";
-		// String feedUrl = "http://localhost:9000/assets/testResponse.xml";
-		
-
   		Appointment appointment = Appointment.find.byId(id);
 //	      appointment.meetingID = meetingID;
 //	      appointment.atendeePW = attendeePW;
 	      
 		appointment.save();
-
 		
-		return async(
-	    	      WS.url(feedUrl).setHeader("Content-type", "text/xml; charset=utf-8").get().map(
-	    	        new Function<WS.Response, Result>() {
-	    	          public Result apply(WS.Response response) {
+		//Logger.info(feedUrl);
+		
+		ProducerTemplate template = CamelContainer.getInstance().getProducer();
+		template.sendBody("direct:apiinput","newMeeting10");
 
-
-	    	        	  // Works ... not overly helpful
-	    	        	  // return ok("Feed title:\n" + response.getBody());
-
-	    	        	  // Doesnt work .. although .getChildNodes.getSize() (or something) does return 1
-	    	        	  // return ok("Feed title:\n" + response.asXml());
-
-	    	        	  Document dom = response.asXml();
-	    	        	  if(dom == null) {
-	    	        	    return badRequest("Expecting Xml data");
-	    	        	  } else {
-	    	        	    String meetingID = XPath.selectText("//meetingID", dom);
-
-	    	        	    if(meetingID == null) {
-	    	        	      return badRequest("Missing parameter [meetingID]");
-	    	        	    } else {
-//	    	        	      return ok("Meeting created : " + meetingID);
-	    	        	    }
-
-	    	        	    String attendeePW = XPath.selectText("//attendeePW", dom);
-	    	        	    if(attendeePW == null) {
-	    	        	      return badRequest("Missing parameter [attendeePW]");
-	    	        	    } else {
-//	    	        	      return ok("Meeting created : " + meetingID);
-	    	        	    }
-
-	    	        	      return ok("Meeting created : " + meetingID + attendeePW);
-	    	        	      
-	    	        	      
-	    	        	  }
-    	        	  
-
-	    	          }
-	    	        }
-	    	      )
-	    	     );
+//		return async(
+		
+				//	    //	      WS.url(feedUrl).setHeader("Content-type", "text/xml; charset=utf-8").get().map(
+//
+//				
+//				  WS.url(feedUrl).get().map(
+//			  	    	        new Function<WS.Response, Result>() {
+//	    	          public Result apply(WS.Response response) {
+//
+//
+//	    	        	  // Works ... not overly helpful
+//	    	        	  // return ok("Feed title:\n" + response.getBody());
+//
+//	    	        	  // Doesnt work .. although .getChildNodes.getSize() (or something) does return 1
+//	    	        	  // return ok("Feed title:\n" + response.asXml());
+//
+//	    	        	  Document dom = response.asXml();
+//	    	        	  if(dom == null) {
+//	    	        	    return badRequest("Expecting Xml data");
+//	    	        	  } else {
+//	    	        	    String meetingID = XPath.selectText("//meetingID", dom);
+//	    	        	    Logger.info(response.getBody());
+//
+//	    	        	    if(meetingID == null) {
+//	    	        	      return badRequest("Missing parameter [meetingID]");
+//	    	        	    } else {
+////	    	        	      return ok("Meeting created : " + meetingID);
+//	    	        	    }
+//
+//	    	        	    String attendeePW = XPath.selectText("//attendeePW", dom);
+//	    	        	    if(attendeePW == null) {
+//	    	        	      return badRequest("Missing parameter [attendeePW]");
+//	    	        	    } else {
+////	    	        	      return ok("Meeting created : " + meetingID);
+//	    	        	    }
+//
+//	    	        	      return ok("Meeting created : " + meetingID + attendeePW);
+//	    	        	      
+//	    	        	      
+//	    	        	  }
+//    	        	  
+//
+//	    	          }
+//	    	        }
+//	    	      )
+	//    	     );
+		return ok("Meeting");
 
 	}
 	
@@ -255,5 +248,6 @@ public class Application extends Controller {
 		
 		return ok("mail sent");
 	}
+	
 	
 }
