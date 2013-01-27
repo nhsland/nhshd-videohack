@@ -4,7 +4,7 @@ $(document).ready(function() {
    var $calendar = $('#calendar');
    var id = 10;
 
-   $calendar.weekCalendar({
+   $('#calendar').weekCalendar({
       displayOddEven:true,
       timeslotsPerHour : 4,
       allowCalEventOverlap : true,
@@ -13,6 +13,7 @@ $(document).ready(function() {
       businessHours :{start: 8, end: 18, limitDisplay: true },
       daysToShow : 7,
       switchDisplay: {'1 day': 1, '3 next days': 3, 'work week': 5, 'full week': 7},
+	  data:'http://127.0.0.1:9000/listAppointmentsAsJson',
       title: function(daysToShow) {
 			return daysToShow == 1 ? '%date%' : '%start% - %end%';
       },
@@ -136,9 +137,6 @@ $(document).ready(function() {
       },
       noEvents : function() {
 
-      },
-      data : function(start, end, callback) {
-         callback(getEventData());
       }
    });
 
@@ -150,55 +148,55 @@ $(document).ready(function() {
    function getEventData() {
       var year = new Date().getFullYear();
       var month = new Date().getMonth();
-      var day = new Date().getDate();
-
-      return {
-         events : [
-            {
-               "id":1,
-               "start": new Date(year, month, day, 12),
-               "end": new Date(year, month, day, 13, 30),
-               "title":"Lunch with Mike"
-            },
-            {
-               "id":2,
-               "start": new Date(year, month, day, 14),
-               "end": new Date(year, month, day, 14, 45),
-               "title":"Dev Meeting"
-            },
-            {
-               "id":3,
-               "start": new Date(year, month, day + 1, 17),
-               "end": new Date(year, month, day + 1, 17, 45),
-               "title":"Hair cut"
-            },
-            {
-               "id":4,
-               "start": new Date(year, month, day - 1, 8),
-               "end": new Date(year, month, day - 1, 9, 30),
-               "title":"Team breakfast"
-            },
-            {
-               "id":5,
-               "start": new Date(year, month, day + 1, 14),
-               "end": new Date(year, month, day + 1, 15),
-               "title":"Product showcase"
-            },
-            {
-               "id":6,
-               "start": new Date(year, month, day, 10),
-               "end": new Date(year, month, day, 11),
-               "title":"I'm read-only",
-               readOnly : true
-            },
-            {
-               "id":7,
-               "start": new Date(year, month, day + 2, 17),
-               "end": new Date(year, month, day + 3, 9),
-               "title":"Multiday"
-            }
-         ]
-      };
+      var day = new Date().getDate();	  
+	  
+	  // {
+	  //          events : [
+	  //             {
+	  //                "id":1,
+	  //                "start": new Date(year, month, day, 12),
+	  //                "end": new Date(year, month, day, 13, 30),
+	  //                "title":"Lunch with Mike"
+	  //             },
+	  //             {
+	  //                "id":2,
+	  //                "start": new Date(year, month, day, 14),
+	  //                "end": new Date(year, month, day, 14, 45),
+	  //                "title":"Dev Meeting"
+	  //             },
+	  //             {
+	  //                "id":3,
+	  //                "start": new Date(year, month, day + 1, 17),
+	  //                "end": new Date(year, month, day + 1, 17, 45),
+	  //                "title":"Hair cut"
+	  //             },
+	  //             {
+	  //                "id":4,
+	  //                "start": new Date(year, month, day - 1, 8),
+	  //                "end": new Date(year, month, day - 1, 9, 30),
+	  //                "title":"Team breakfast"
+	  //             },
+	  //             {
+	  //                "id":5,
+	  //                "start": new Date(year, month, day + 1, 14),
+	  //                "end": new Date(year, month, day + 1, 15),
+	  //                "title":"Product showcase"
+	  //             },
+	  //             {
+	  //                "id":6,
+	  //                "start": new Date(year, month, day, 10),
+	  //                "end": new Date(year, month, day, 11),
+	  //                "title":"I'm read-only",
+	  //                readOnly : true
+	  //             },
+	  //             {
+	  //                "id":7,
+	  //                "start": new Date(year, month, day + 2, 17),
+	  //                "end": new Date(year, month, day + 3, 9),
+	  //                "title":"Multiday"
+	  //             }
+	  //          ]
+	  //       };
    }
 
 

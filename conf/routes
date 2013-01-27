@@ -17,6 +17,8 @@ GET		/patient					controllers.Application.patient()
 GET		/test						controllers.Application.createAppointment(start:String,end:String,title:String,body:String,username:String)
 GET		/listAppointmentsAsJson		controllers.Application.listAppointmentsAsJson()
 
+GET 	/landing					controllers.Application.landing()
+
 GET		/approve						controllers.Application.approve(id:Long)
 GET		/decline						controllers.Application.decline(id:Long)
 

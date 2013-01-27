@@ -1674,7 +1674,6 @@
 				if ( $(this).hasClass('wc-new-cal-event') ) {
 					
 					// Send the new appointment to the URL for submission.
-					calEvent.id *= -1
 					var http = new XMLHttpRequest ();
 					var url = "http://127.0.0.1:9000/test";
 					var params = "start=" + calEvent.start + "&end=" + calEvent.end + "&title=" + calEvent.title + "&body=" + calEvent.body + "&username=" + username;
@@ -1690,7 +1689,8 @@
   				  	
 					  	if ( http.readyState == 4 && http.status == 200 ) { // OK
 							
-							alert ( "Your appointment request has been sent!" );
+							//alert ( "Your appointment request has been sent!" );
+							window.location.href="http://127.0.0.1:9000/landing";
 							
 					  	}
 					
