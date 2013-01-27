@@ -1675,7 +1675,7 @@
 					
 					// Send the new appointment to the URL for submission.
 					var http = new XMLHttpRequest ();
-					var url = "http://127.0.0.1:9000/test";
+					var url = "/test";
 					var params = "start=" + calEvent.start + "&end=" + calEvent.end + "&title=" + calEvent.title + "&body=" + calEvent.body + "&username=" + username;
 					
 					http.open ( "GET", url + "?" + params, true );
@@ -1690,7 +1690,7 @@
 					  	if ( http.readyState == 4 && http.status == 200 ) { // OK
 							
 							//alert ( "Your appointment request has been sent!" );
-							window.location.href="http://127.0.0.1:9000/landing";
+							window.location.href="/landing";
 							
 					  	}
 					

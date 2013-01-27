@@ -131,8 +131,16 @@ public class Application extends Controller {
 		
 		
 		BigBlueButton bbb = new BigBlueButton(BBB_SERVER, BBB_SERVER_SALT);
+		
+		
 
 		String feedUrl = null;
+		try {
+			Logger.info(bbb.create(meetID));
+			Logger.info(bbb.join("bfb8f620-6892-11e2-8aec-000c297e72b0", "person","eXUvjA18"));
+		} catch (Exception e){
+			
+		}
 		
 		try {
 		feedUrl = bbb.create(meetID);
